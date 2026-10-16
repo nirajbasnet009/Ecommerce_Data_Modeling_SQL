@@ -213,8 +213,131 @@ select * from cte_table2 where ran <= 3;
 
 
 -- Identify customers who placed more than one order and rank them by their number of orders.
-with cte_table as (
-	SELECT     customer_unique_id,
- count(*) over(partition by customer_unique_id) as count_id
-		 FROM olist_customers_dataset)
-	select * from cte_table where count_id > 1;
+
+with cte_table_1 as (
+SELECT
+	 c.customer_unique_id as customer_unique_id,
+     count(o.order_id) as total_orders
+     FROM olist_customers_dataset c
+     INNER JOIN olist_orders_dataset o
+     ON c.customer_id = o.customer_id
+     
+GROUP BY customer_unique_id
+HAVING total_orders > 1
+),
+cte_table_2 as (
+     SELECT
+          *,
+          RANK() over(order by total_orders desc) as customer_rank
+          FROM
+            cte_table_1)
+select * from cte_table_2 order by customer_rank;
+
+
+-- Calculate the number of days between consecutive orders placed by repeat customers.
+with cte_table as(
+SELECT 
+       customer_unique_id AS customer_unique_id,
+       order_purchase_timestamp as buying_date,
+       order_id as order_id,
+       count(*) over(partition by customer_unique_id) as order_count
+
+       FROM olist_customers_dataset c
+       INNER JOIN olist_orders_dataset o
+       ON c.customer_id = o.customer_id
+
+),
+cte_table_1 as (
+select customer_unique_id, 
+       order_id,
+	   buying_date,
+
+       lag(buying_date) over(partition by customer_unique_id order by buying_date,order_id) as previous_purchase_date
+from cte_table
+where order_count >= 2)
+SELECT *,
+		timestampdiff(DAY, previous_purchase_date, buying_date) as days_since_previous_order
+
+FROM
+    cte_table_1;
+       
+     
+     
+-- Calculate the average number of days between consecutive purchases for each repeat customer.
+
+
+with cte_table_1 as(
+SELECT 
+       customer_unique_id AS customer_unique_id,
+       order_purchase_timestamp as buying_date,
+       order_id as order_id,
+       count(*) over(partition by customer_unique_id) as order_count
+
+       FROM olist_customers_dataset c
+       INNER JOIN olist_orders_dataset o
+       ON c.customer_id = o.customer_id
+
+),
+cte_table_2 as (
+select customer_unique_id, 
+       order_count,
+	   buying_date,
+
+       LAG(buying_date) OVER(partition by customer_unique_id order by buying_date,order_id) as previous_purchase_date
+from cte_table_1
+where 
+    order_count >= 2
+
+),
+
+cte_table_3 as (
+SELECT customer_unique_id,
+        order_count,
+		timestampdiff(DAY, previous_purchase_date, buying_date) as days_since_previous_order
+
+FROM
+    cte_table_2
+)
+ select 
+        customer_unique_id,
+        order_count,
+		ROUND(AVG(days_since_previous_order),2) as avg_days_between_orders
+from cte_table_3
+group by customer_unique_id,order_count
+order by order_count DESC
+;
+
+
+-- What percentage of each state's total merchandise sales is contributed by each seller?
+
+
+with seller_sales as (
+SELECT 
+       s.seller_id,
+	   s.seller_state as seller_state,
+       sum(oi.price) as sellers_total_sales
+       FROM olist_orders_dataset o
+       INNER JOIN olist_order_items_dataset oi
+       ON o.order_id = oi.order_id
+       INNER JOIN olist_sellers_dataset s
+       ON oi.seller_id = s.seller_id
+
+WHERE o.order_status = 'delivered'
+group by seller_state, seller_id
+),
+states_sales as (
+SELECT 
+       seller_id,
+       seller_state,
+       sellers_total_sales,
+       sum(sellers_total_sales) OVER(partition by seller_state) as state_total_sales
+
+FROM seller_sales
+)
+select seller_state, seller_id, sellers_total_sales, state_total_sales,
+	   ROUND((sellers_total_sales * 100)/NULLIF(state_total_sales,0),2) as contribution_pct
+from states_sales
+order by seller_state
+;
+
+

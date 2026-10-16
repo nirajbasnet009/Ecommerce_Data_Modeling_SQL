@@ -191,15 +191,15 @@ WHERE
 -- What percentage of delivered orders arrived on or before their estimated delivery date?
  
 
-SELECT
-	 ROUND(SUM(CASE 
-            WHEN (DATE(order_delivered_customer_date) <= DATE(order_estimated_delivery_date)) THEN 1 ELSE 0 END) * 100 / COUNT(*),2) AS on_time_delivery_percentage
-FROM 
-    olist_orders_dataset
-WHERE 
-	order_status = 'delivered'
-    AND order_delivered_customer_date IS NOT NUll
-    AND order_estimated_delivery_date IS NOT NULL;
+	SELECT
+		 ROUND(SUM(CASE 
+				WHEN (DATE(order_delivered_customer_date) <= DATE(order_estimated_delivery_date)) THEN 1 ELSE 0 END) * 100 / COUNT(*),2) AS on_time_delivery_percentage
+	FROM 
+		olist_orders_dataset
+	WHERE 
+		order_status = 'delivered'
+		AND order_delivered_customer_date IS NOT NUll
+		AND order_estimated_delivery_date IS NOT NULL;
 
 
      

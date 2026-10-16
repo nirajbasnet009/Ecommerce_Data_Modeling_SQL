@@ -1,0 +1,6 @@
+# Raw dataset files (download from Kaggle)
+data/
+*.csv
+
+# System files
+.DS_Store

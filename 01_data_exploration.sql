@@ -1,4 +1,3 @@
-
 -- ============================================================
 -- PROJECT: Olist Brazilian E-Commerce SQL Analysis
 -- ============================================================
@@ -15,19 +14,15 @@
 -- statuses before performing data quality checks and analysis.
 -- ============================================================
 
-
 USE ecommerce_db;
 
-
 -- ============================================================
--- SECTION 1: DATABASE OVERVIEW
+-- SECTION 1: DATABASE OVERVIEW (Q1 - Q10)
 -- ============================================================
-
 
 -- ------------------------------------------------------------
 -- Q1: How many records are stored in each of the nine tables?
 -- ------------------------------------------------------------
-
 SELECT
     'customers' AS table_name,
     COUNT(*) AS total_rows
@@ -93,23 +88,25 @@ ORDER BY
     total_rows DESC;
 
 
+-- ------------------------------------------------------------
 -- Q2: How many unique customers are in the Olist dataset?
-
+-- ------------------------------------------------------------
 SELECT
     COUNT(DISTINCT customer_unique_id) AS unique_customers_count
 FROM olist_customers_dataset;
 
 
+-- ------------------------------------------------------------
 -- Q3: How many different order statuses exist in the dataset?
-
+-- ------------------------------------------------------------
 SELECT
     COUNT(DISTINCT order_status) AS total_order_statuses
 FROM olist_orders_dataset;
 
 
-
+-- ------------------------------------------------------------
 -- Q4: How many orders belong to each order status?
-
+-- ------------------------------------------------------------
 SELECT
     order_status,
     COUNT(*) AS total_orders
@@ -120,54 +117,67 @@ ORDER BY
     total_orders DESC;
 
 
-
+-- ------------------------------------------------------------
 -- Q5: Which 10 Brazilian states have the most customer records in the Olist dataset?
-
+-- ------------------------------------------------------------
 SELECT 
-	 customer_state, 
-     COUNT(*) AS total_customers 
+    customer_state, 
+    COUNT(*) AS total_customers 
 FROM olist_customers_dataset 
-GROUP BY customer_state 
-ORDER BY total_customers DESC 
+GROUP BY
+    customer_state 
+ORDER BY
+    total_customers DESC 
 LIMIT 10;
 
--- Which 10 product categories contain the most products?
 
+-- ------------------------------------------------------------
+-- Q6: Which 10 product categories contain the most products?
+-- ------------------------------------------------------------
 SELECT
-     product_category_name,
-     COUNT(*) AS total_products
+    product_category_name,
+    COUNT(*) AS total_products
 FROM olist_products_dataset
-GROUP BY product_category_name
-ORDER BY total_products DESC
+GROUP BY
+    product_category_name
+ORDER BY
+    total_products DESC
 LIMIT 10;
 
--- How many products have no category assigned?
+
+-- ------------------------------------------------------------
+-- Q7: How many products have no category assigned?
+-- ------------------------------------------------------------
 SELECT
     COUNT(*) AS products_without_category
 FROM olist_products_dataset 
 WHERE product_category_name IS NULL;
 
--- How many products have missing weight information? 
+
+-- ------------------------------------------------------------
+-- Q8: How many products have missing weight information?
+-- ------------------------------------------------------------
 SELECT
     COUNT(*) AS products_missing_weight
 FROM olist_products_dataset 
-WHERE  product_weight_g IS NULL;
+WHERE product_weight_g IS NULL;
 
--- How many products have a weight of zero or less?
+
+-- ------------------------------------------------------------
+-- Q9: How many products have a weight of zero or less?
+-- ------------------------------------------------------------
 SELECT
-	  COUNT(*) AS products_invalid_weight
+    COUNT(*) AS products_invalid_weight
 FROM olist_products_dataset 
-WHERE  product_weight_g = 0
-OR product_weight_g < 0;
-    
--- What are the minimum, maximum, and average product weights in the Olist dataset?
+WHERE product_weight_g = 0
+   OR product_weight_g < 0;
+
+
+-- ------------------------------------------------------------
+-- Q10: What are the minimum, maximum, and average product weights in the Olist dataset?
+-- ------------------------------------------------------------
 SELECT 
-     MIN(product_weight_g) AS min_weight_g,
-	 MAX(product_weight_g) AS max_weight_g,
-     AVG(product_weight_g) AS avg_weight_g
+    MIN(product_weight_g) AS min_weight_g,
+    MAX(product_weight_g) AS max_weight_g,
+    AVG(product_weight_g) AS avg_weight_g
 FROM olist_products_dataset;
-
-
-     
-
-

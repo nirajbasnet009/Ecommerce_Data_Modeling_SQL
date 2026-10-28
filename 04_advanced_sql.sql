@@ -20,9 +20,7 @@ USE ecommerce_db;
 -- SECTION 4: ADVANCED ANALYTICAL SQL (Q31 - Q42)
 -- ============================================================
 
--- ------------------------------------------------------------
 -- Q31: Rank product categories by delivered merchandise sales.
--- ------------------------------------------------------------
 SELECT
     op.product_category_name,
     SUM(oi.price) AS total_sales,
@@ -39,9 +37,7 @@ ORDER BY
     sales_rank;
 
 
--- ------------------------------------------------------------
 -- Q32: Compare ROW_NUMBER(), RANK(), and DENSE_RANK() for product category sales.
--- ------------------------------------------------------------
 SELECT
     op.product_category_name,
     SUM(oi.price) AS total_sales,
@@ -61,9 +57,7 @@ ORDER BY
     op.product_category_name;
 
 
--- ------------------------------------------------------------
 -- Q33: Find the top 3 sellers by delivered merchandise sales within each seller state.
--- ------------------------------------------------------------
 WITH seller_state_sales AS (
     SELECT
         s.seller_state,
@@ -99,9 +93,7 @@ ORDER BY
     state_rank;
 
 
--- ------------------------------------------------------------
 -- Q34: Calculate monthly delivered merchandise sales and the running total of sales over time.
--- ------------------------------------------------------------
 WITH monthly_sales_summary AS (
     SELECT
         DATE_FORMAT(order_purchase_timestamp, '%Y-%m') AS sales_month,
@@ -132,9 +124,7 @@ ORDER BY
     sales_month;
 
 
--- ------------------------------------------------------------
 -- Q35: Calculate the percentage increase or decrease in delivered merchandise sales compared with the previous month.
--- ------------------------------------------------------------
 WITH monthly_sales_summary AS (
     SELECT
         DATE_FORMAT(order_purchase_timestamp, '%Y-%m') AS sales_month,
@@ -166,9 +156,7 @@ ORDER BY
     sales_month;
 
 
--- ------------------------------------------------------------
 -- Q36: Calculate a three-month moving average of delivered merchandise sales.
--- ------------------------------------------------------------
 WITH monthly_sales_summary AS (
     SELECT
         DATE_FORMAT(order_purchase_timestamp, '%Y-%m') AS sales_month,
@@ -202,9 +190,7 @@ ORDER BY
     sales_month;
 
 
--- ------------------------------------------------------------
 -- Q37: Calculate each product category's percentage contribution to total delivered merchandise sales.
--- ------------------------------------------------------------
 WITH category_sales_summary AS (
     SELECT
         p.product_category_name,
@@ -242,9 +228,7 @@ ORDER BY
     total_sales_by_category DESC;
 
 
--- ------------------------------------------------------------
 -- Q38: Find the top 3 product categories by delivered merchandise sales within each customer state.
--- ------------------------------------------------------------
 WITH category_sales_by_state AS (
     SELECT 
         c.customer_state,
@@ -285,9 +269,7 @@ ORDER BY
     category_rank;
 
 
--- ------------------------------------------------------------
 -- Q39: Identify customers who placed more than one order and rank them by their number of orders.
--- ------------------------------------------------------------
 WITH repeat_order_counts AS (
     SELECT
         c.customer_unique_id,
@@ -317,9 +299,7 @@ ORDER BY
     total_orders DESC;
 
 
--- ------------------------------------------------------------
 -- Q40: Calculate the number of days between consecutive orders placed by repeat customers.
--- ------------------------------------------------------------
 WITH customer_order_history AS (
     SELECT 
         c.customer_unique_id,
@@ -354,9 +334,7 @@ ORDER BY
     purchase_date;
 
 
--- ------------------------------------------------------------
 -- Q41: Calculate the average number of days between consecutive purchases for each repeat customer.
--- ------------------------------------------------------------
 WITH customer_order_history AS (
     SELECT 
         c.customer_unique_id,
@@ -399,9 +377,7 @@ ORDER BY
     avg_days_between_orders ASC;
 
 
--- ------------------------------------------------------------
 -- Q42: What percentage of each state's total merchandise sales is contributed by each seller?
--- ------------------------------------------------------------
 WITH seller_state_sales AS (
     SELECT 
         s.seller_id,

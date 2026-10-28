@@ -20,9 +20,7 @@ USE ecommerce_db;
 -- SECTION 2: DATA QUALITY & HYGIENE (Q11 - Q18)
 -- ============================================================
 
--- ------------------------------------------------------------
 -- Q11: How many customer records have missing location data?
--- ------------------------------------------------------------
 SELECT 
     COUNT(*) AS customers_with_missing_location
 FROM olist_customers_dataset
@@ -31,9 +29,7 @@ WHERE customer_zip_code_prefix IS NULL
    OR customer_state IS NULL;
 
 
--- ------------------------------------------------------------
 -- Q12: Are there any duplicate customer IDs in the Customers table?
--- ------------------------------------------------------------
 SELECT
     customer_id,
     COUNT(*) AS occurrence_count
@@ -46,9 +42,7 @@ ORDER BY
     occurrence_count DESC;
 
 
--- ------------------------------------------------------------
 -- Q13: Are there any duplicate order IDs in the Orders table?
--- ------------------------------------------------------------
 SELECT
     order_id,
     COUNT(*) AS occurrence_count
@@ -61,18 +55,14 @@ ORDER BY
     occurrence_count DESC;
 
 
--- ------------------------------------------------------------
 -- Q14: How many orders have a delivery date earlier than their purchase date?
--- ------------------------------------------------------------
 SELECT
     COUNT(*) AS invalid_delivery_dates
 FROM olist_orders_dataset
 WHERE order_purchase_timestamp > order_delivered_customer_date;
 
 
--- ------------------------------------------------------------
 -- Q15: How many orders have been canceled, and what percentage of all orders do they represent?
--- ------------------------------------------------------------
 SELECT 
     COUNT(*) AS total_orders, 
     SUM(CASE 
@@ -89,9 +79,7 @@ SELECT
 FROM olist_orders_dataset;
 
 
--- ------------------------------------------------------------
 -- Q16: How many products have missing category, weight, or dimension information?
--- ------------------------------------------------------------
 SELECT
     SUM(CASE WHEN product_category_name IS NULL THEN 1 ELSE 0 END) AS missing_category,
     SUM(CASE WHEN product_weight_g IS NULL THEN 1 ELSE 0 END) AS missing_weight,
@@ -105,18 +93,14 @@ SELECT
 FROM olist_products_dataset;
 
 
--- ------------------------------------------------------------
 -- Q17: How many payment records have an invalid payment amount?
--- ------------------------------------------------------------
 SELECT
     COUNT(*) AS invalid_payment
 FROM olist_order_payments_dataset
 WHERE payment_value <= 0;
 
 
--- ------------------------------------------------------------
 -- Q18: Summarize missing, zero, and negative payment amounts.
--- ------------------------------------------------------------
 SELECT 
     COUNT(*) AS total_payments,
     SUM(CASE WHEN payment_value = 0 THEN 1 ELSE 0 END) AS zero_payments,

@@ -1,17 +1,22 @@
 # Olist Brazilian E-Commerce SQL Analytics & OLAP Modeling
 
-An end-to-end SQL analytics, data quality auditing, and dimensional modeling project analyzing over 100,000 real-world customer orders from the Olist Brazilian E-Commerce public dataset.
+An end-to-end SQL analytics, data hygiene auditing, and dimensional modeling project analyzing over 100,000 real-world customer orders from the Olist Brazilian E-Commerce public dataset.
 
 ## 1. Project Overview
 
-In this project, I modeled and analyzed an enterprise-scale e-commerce database to extract actionable commercial insights and build an analytics-ready star schema. 
+In this project, I modeled and analyzed 100,000+ customer transactions across nine relational tables from the Kaggle Olist Brazilian E-Commerce public dataset to extract actionable commercial insights and build an analytics-ready star schema. 
 
-I took raw, uncurated transactions across nine relational tables, resolved data quality anomalies, calculated core business KPIs with Common Table Expressions (CTEs), performed customer and category ranking with window functions, and constructed an analytical star schema centered on delivered order items (`fact_sales`).
+I resolved data quality anomalies, calculated core business KPIs with Common Table Expressions (CTEs), performed customer and category ranking with window functions, and constructed an analytical star schema centered on delivered order items (`fact_sales`) with 100% referential integrity across four dimensions.
+
+### Current Status
+- **SQL Analytics & OLAP Modeling:** Completed (50 SQL queries across 5 phases verified in MySQL 8.0 inside Docker).
+- **Power BI Reporting:** In Progress (Next milestone: building an interactive dashboard on top of the MySQL star schema).
 
 ### Environment & Tools
 - **DBMS:** MySQL 8.0 running inside Docker (`ecommerce_mysql` on port `3307`)
 - **Database:** `ecommerce_db`
 - **Volume:** 100,000+ orders (2016–2018)
+- **Currency:** Brazilian Real (BRL, R$)
 - **Tech Stack:** MySQL 8.0, Docker, SQL (CTEs, Window Functions, Dimensional Modeling), Git
 
 ---
@@ -73,56 +78,72 @@ mysql -h 127.0.0.1 -P 3307 -u root -p ecommerce_db < 05_olap_modeling.sql
 ### The Analytical Star Schema
 
 ```text
-                  +-------------------------+
-                  |       dim_customer      |
-                  +-------------------------+
-                  | PK  customer_id         |
-                  |     customer_unique_id  |
-                  |     customer_city       |
-                  |     customer_state      |
-                  +------------+------------+
-                               |
-                               | (1:N)
-                               v
-+-------------------------+        +--------------------------+
-|       dim_product       |        |        fact_sales        |
-+-------------------------+        +--------------------------+
-| PK  product_id          |<---+   | PK,FK1  order_id         |
-|     product_category    |    |   | PK      order_item_id    |
-|     product_weight_g    |    +---| FK2     customer_id      |
-|     product_dimensions  |        | FK3     product_id       |
-+-------------------------+    |   | FK4     seller_id        |
-                               +---| FK5     date_key         |
-                               |   |         price            |
-                               |   |         freight_value    |
-                               |   +--------------------------+
-                               |               |
-                               | (1:N)         | (1:N)
-                               v               v
-                  +-------------------------+  +--------------------------+
-                  |        dim_seller       |  |         dim_date         |
-                  +-------------------------+  +--------------------------+
-                  | PK  seller_id           |  | PK  date_key (YYYYMMDD)  |
-                  |     seller_city         |  |     full_purchase_date   |
-                  |     seller_state        |  |     quarter, month, year |
-                  +-------------------------+  +--------------------------+
+                             +-------------------------------+
+                             |          dim_customer         |
+                             +-------------------------------+
+                             | PK  customer_id               |
+                             |     customer_unique_id        |
+                             |     customer_city             |
+                             |     customer_state            |
+                             +---------------+---------------+
+                                             |
+                                             | (1:N)
+                                             v
++-------------------------------+        +-------------------------------+
+|          dim_product          |        |           fact_sales          |
++-------------------------------+        +-------------------------------+
+| PK  product_id                |<-------| PK  order_id                  |
+|     product_category_name     |  (1:N) | PK  order_item_id             |
+|     product_weight_g          |        | FK  customer_id               |
+|     product_length_cm         |        | FK  product_id                |
+|     product_height_cm         |        | FK  seller_id                 |
+|     product_width_cm          |        | FK  date_key                  |
++-------------------------------+        |     price (R$)                |
+                                         |     freight_value (R$)        |
+                                         +---------------+---------------+
+                                                         |
+                                 +-----------------------+-----------------------+
+                                 | (1:N)                                         | (1:N)
+                                 v                                               v
++-------------------------------+                               +-------------------------------+
+|           dim_seller          |                               |            dim_date           |
++-------------------------------+                               +-------------------------------+
+| PK  seller_id                 |                               | PK  date_key (YYYYMMDD)       |
+|     seller_zip_code_prefix    |                               |     full_purchase_date        |
+|     seller_city               |                               |     day, month, quarter, year |
+|     seller_state              |                               +-------------------------------+
++-------------------------------+
 ```
 
 ### Verified Findings & Key Numbers
 - **Fact Table Grain:** One row per delivered order item (`order_id`, `order_item_id`).
-- **Revenue Reconciliation:** Exactly `$13,591,643.70` in delivered product merchandise across 110,197 order line items, reconciled with 100% precision between raw staging and final star schema queries.
+- **Delivered Merchandise Total:** Exactly `R$ 13,591,643.70` across 110,197 delivered order items (excluding freight), reconciled with 100% precision between raw staging and final star schema queries. Total shipping freight was `R$ 2,217,922.90`.
 - **Referential Integrity:** 0 orphaned foreign keys across customer, product, seller, and date dimensions (`COUNT(*) = 110,197` on full 5-table inner join).
 - **Logistics Latency:** Average delivery turnaround time was ~12.5 days, with 92% carrier on-time SLA compliance against estimated delivery dates.
 
+### Reproducible Business Query: Monthly Delivered Sales Trend
+```sql
+SELECT 
+    d.year,
+    d.month,
+    ROUND(SUM(f.price), 2) AS monthly_merchandise_sales_brl,
+    COUNT(*) AS total_items_sold
+FROM fact_sales f
+INNER JOIN dim_date d ON f.date_key = d.date_key
+GROUP BY d.year, d.month
+ORDER BY d.year, d.month;
+```
+*Observed Finding:* Sales grew steadily from R$ 41,747.00 in January 2017 to peak in November 2017 during Black Friday at over R$ 1,000,000 in monthly sales, sustaining high transaction volume through 2018.
+
 ---
 
-## 5. What I Learned & Key Decision
+## 5. What I Learned & Key Decisions
 
 ### Key Decision: Fact Table Grain
 In e-commerce databases, an order often contains multiple distinct products sold by different merchants. Defining `fact_sales` at the whole-order level would force aggregate prices and blur product-level or seller-level relationships. By defining the grain at the **order-item level** (`order_id`, `order_item_id`), each line item cleanly connects to its specific product, merchant, and individual freight cost.
 
 ### Real Challenge: Handling Missing Product Categories
-During dimension modeling, I discovered 611 product records missing a category name. If I had filtered them out with an `INNER JOIN`, over $170,000 in delivered sales would have been lost from the warehouse. Following Kimball dimensional modeling standards, I preserved every product record and mapped missing categories to `'Unknown'`, maintaining complete financial reconciliation down to the cent.
+During dimension modeling, I discovered 611 product records in the source dataset missing a category name. If I had filtered them out with an `INNER JOIN`, over R$ 170,000 in delivered sales items would have been dropped from the warehouse. Following Kimball dimensional modeling standards, I preserved every product record and mapped missing categories to `'Unknown'`, maintaining complete financial reconciliation down to the cent.
 
 ### Next Step
 Building an interactive **Power BI** dashboard on top of the MySQL star schema to visualize category sales velocity, shipping latency by state, and customer repeat purchase patterns.

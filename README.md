@@ -2,6 +2,11 @@
 
 An end-to-end SQL analytics, data hygiene auditing, and dimensional modeling project analyzing over 100,000 real-world customer orders from the Olist Brazilian E-Commerce public dataset.
 
+> **Quick Summary for Reviewers:**
+> - **What did I build?** An end-to-end SQL analytics pipeline and Kimball star schema (`fact_sales` + 4 dimensions) analyzing 100k+ Brazilian e-commerce orders in MySQL 8.0 on Docker.
+> - **What result or output can you see?** Verified 110,197 delivered order items accounting for R$ 13,591,643.70 in total merchandise value, with zero orphaned foreign keys across all 4 dimensions.
+> - **Which file should you open first?** Start with [`05_olap_modeling.sql`](./05_olap_modeling.sql) to inspect the star schema construction, followed by [`03_business_analysis.sql`](./03_business_analysis.sql) for CTE business metrics.
+
 ## 1. Project Overview
 
 In this project, I modeled and analyzed 100,000+ customer transactions across nine relational tables from the Kaggle Olist Brazilian E-Commerce public dataset to extract actionable commercial insights and build an analytics-ready star schema. 

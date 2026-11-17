@@ -2,5 +2,9 @@
 data/
 *.csv
 
+# Allow curated Star Schema CSVs for Power BI / reporting
+!star_schema_data/
+!star_schema_data/*.csv
+
 # System files
 .DS_Store

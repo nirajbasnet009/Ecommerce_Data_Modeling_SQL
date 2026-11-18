@@ -2,7 +2,11 @@
 
 An end-to-end SQL analytics, data hygiene auditing, and dimensional modeling project analyzing over 100,000 real-world customer orders from the Olist Brazilian E-Commerce public dataset.
 
-![Executive Sales & Revenue Overview](docs/images/executive-sales-overview.png)
+## Monthly Revenue Trend
+
+![Monthly Merchandise Revenue](docs/images/monthly-merchandise-revenue.png)
+
+*The two lines compare monthly merchandise revenue in Brazilian reais (R$) with the same month in the prior year, tracking seasonal momentum and annual growth across the Olist platform.*
 
 > **Quick Summary for Reviewers:**
 > - **What did I build?** An end-to-end SQL analytics pipeline and Kimball star schema (`fact_sales` + 4 dimensions) analyzing 100k+ Brazilian e-commerce orders in MySQL 8.0 on Docker, complete with post-modeling migration patches for BI dashboard readiness.
@@ -189,6 +193,8 @@ Computer Science Undergraduate, University of South Florida
 An interactive, portfolio-grade executive dashboard designed on top of the hardened dimensional model:
 * **Report File:** [`powerbi/ecommercereport.pbix`](./powerbi/ecommercereport.pbix)
 * **Design System:** Custom Executive Palette (Soft Slate `#F4F5F7` canvas, `#0F2C59` navy accents)
+
+![Executive Sales & Revenue Overview](docs/images/executive-sales-overview.png)
 
 ### Features & Architecture:
 1. **Executive Sales & Revenue Overview:**

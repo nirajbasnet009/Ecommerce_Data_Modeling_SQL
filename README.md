@@ -23,8 +23,12 @@
 
 <br>
 
+<a href="Dashboard%20Pdf/Dashboard.pdf">
+  <img src="https://img.shields.io/badge/📊%20VIEW%20DASHBOARD%20(PDF)-111827?style=for-the-badge" alt="View Dashboard PDF">
+</a>
+&nbsp;
 <a href="powerbi/ecommercereport.pbix">
-  <img src="https://img.shields.io/badge/📊%20VIEW%20DASHBOARD-111827?style=for-the-badge" alt="View Dashboard">
+  <img src="https://img.shields.io/badge/⚡%20DOWNLOAD%20.PBIX-111827?style=for-the-badge" alt="Download PBIX">
 </a>
 &nbsp;
 <a href="https://nirajbasnet.com.np/blog/olist-ecommerce-sql-analytics-and-olap-modeling/">
@@ -166,7 +170,8 @@ Every headline metric in the Power BI dashboard was mathematically reconciled ag
 
 The interactive Power BI dashboard (`ecommercereport.pbix`) is engineered using a custom executive theme, strict 1:N single-direction relationships, and centralized DAX measures:
 
-- **Report Artifact:** [`powerbi/ecommercereport.pbix`](powerbi/ecommercereport.pbix)
+- **Dashboard PDF Export:** [`Dashboard Pdf/Dashboard.pdf`](Dashboard%20Pdf/Dashboard.pdf) *(instant in-browser view)*
+- **Power BI Report File (.pbix):** [`powerbi/ecommercereport.pbix`](powerbi/ecommercereport.pbix)
 - **Design System:** Custom Soft-Slate Executive Palette (`#F4F5F7` canvas, `#0F2C59` navy accents, card shadows, high-contrast typography)
 - **Centralized Logic:** Dedicated `_Measures` table housing all Time-Intelligence, KPI, and growth calculations.
 
@@ -323,6 +328,9 @@ mysql -h 127.0.0.1 -P 3307 -u root -p ecommerce_db < migrations/03_patch_dim_pro
 ```text
 Ecommerce_Data_Modeling_SQL/
 │
+├── 📂 Dashboard Pdf/
+│   └── 📊 Dashboard.pdf                         # Full-resolution executive dashboard PDF export
+│
 ├── 📂 docs/
 │   └── 📂 images/
 │       ├── 📊 executive-sales-overview.png      # Full executive dashboard canvas preview
@@ -356,8 +364,12 @@ Ecommerce_Data_Modeling_SQL/
 
 <br>
 
+<a href="Dashboard%20Pdf/Dashboard.pdf">
+  <img src="https://img.shields.io/badge/📊%20VIEW%20DASHBOARD%20(PDF)-F2C811?style=for-the-badge&logoColor=000000" alt="View Dashboard PDF">
+</a>
+&nbsp;
 <a href="powerbi/ecommercereport.pbix">
-  <img src="https://img.shields.io/badge/📊%20DOWNLOAD%20POWER%20BI%20REPORT-F2C811?style=for-the-badge&logoColor=000000" alt="Download Report">
+  <img src="https://img.shields.io/badge/⚡%20DOWNLOAD%20.PBIX-111827?style=for-the-badge" alt="Download PBIX">
 </a>
 &nbsp;
 <a href="https://nirajbasnet.com.np/blog/olist-ecommerce-sql-analytics-and-olap-modeling/">

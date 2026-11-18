@@ -2,6 +2,8 @@
 
 An end-to-end SQL analytics, data hygiene auditing, and dimensional modeling project analyzing over 100,000 real-world customer orders from the Olist Brazilian E-Commerce public dataset.
 
+![Executive Sales & Revenue Overview](docs/images/executive-sales-overview.png)
+
 > **Quick Summary for Reviewers:**
 > - **What did I build?** An end-to-end SQL analytics pipeline and Kimball star schema (`fact_sales` + 4 dimensions) analyzing 100k+ Brazilian e-commerce orders in MySQL 8.0 on Docker, complete with post-modeling migration patches for BI dashboard readiness.
 > - **What result or output can you see?** Verified 110,197 delivered order items accounting for **R$ 13,221,498.11** in delivered merchandise sales (**R$ 15,419,773.75** gross delivered value including freight), with 100% referential integrity and zero orphaned foreign keys across all 4 dimensions. (Gross raw demand across all order statuses totaled R$ 13,591,643.70).
@@ -16,7 +18,7 @@ I resolved data quality anomalies, calculated core business KPIs with Common Tab
 ### Current Status
 - **SQL Analytics & OLAP Modeling:** Completed (50 SQL queries across 5 phases verified in MySQL 8.0 inside Docker).
 - **BI Schema Migration & Hardening:** Completed (3 production migration patches resolving customer grain, calendar continuity, and category translations).
-- **Power BI Reporting:** In Progress (Building an interactive dashboard on top of the hardened star schema).
+- **Power BI Reporting:** Completed (Interactive executive dashboard built on top of the hardened star schema in [`powerbi/ecommercereport.pbix`](./powerbi/ecommercereport.pbix)).
 
 ### Environment & Tools
 - **DBMS:** MySQL 8.0 running inside Docker (`ecommerce_mysql` on port `3307`)
@@ -178,3 +180,21 @@ Computer Science Undergraduate, University of South Florida
 - Portfolio: [nirajbasnet.com.np](https://nirajbasnet.com.np)  
 - LinkedIn: [linkedin.com/in/nirajbasnet009](https://www.linkedin.com/in/nirajbasnet009)  
 - GitHub: [github.com/nirajbasnet009](https://github.com/nirajbasnet009)
+
+
+---
+
+## 6. Power BI Executive Dashboard
+
+An interactive, portfolio-grade executive dashboard designed on top of the hardened dimensional model:
+* **Report File:** [`powerbi/ecommercereport.pbix`](./powerbi/ecommercereport.pbix)
+* **Design System:** Custom Executive Palette (Soft Slate `#F4F5F7` canvas, `#0F2C59` navy accents)
+
+### Features & Architecture:
+1. **Executive Sales & Revenue Overview:**
+   - **Executive KPI Cards:** Total Merchandise Revenue (R$ 13,221,498.11), Total Delivered Orders (96,478), Total Gross Delivered Value (R$ 15,419,773.75), Average Order Value (R$ 137.04).
+   - **Monthly Merchandise Revenue Trend:** Dual-line comparison of current vs previous year revenue with Time-Intelligence DAX functions.
+   - **Sales Velocity by Day of Week:** Visualizing daily sales velocity across weekdays and weekends.
+   - **Interactive Date Slicers:** Gapless timeline navigation leveraging `dim_date`.
+2. **Reconciliation & Integrity:**
+   - Every KPI matches the verified MySQL OLAP queries to the exact cent, ensuring complete referential and mathematical consistency across the entire reporting layer.

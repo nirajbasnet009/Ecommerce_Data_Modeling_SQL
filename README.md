@@ -170,7 +170,7 @@ Every headline metric in the Power BI dashboard was mathematically reconciled ag
 
 I built an interactive Power BI report directly on the verified MySQL 8.0 star schema to analyze delivered orders from the Olist Brazilian e-commerce dataset. Using granular order-item transactions from `fact_sales` and four dimensional tables (`dim_customer`, `dim_product`, `dim_seller`, and `dim_date`), the report centralizes business logic into dedicated DAX measures to evaluate merchandise sales performance, logistics economics, geographical concentration, and customer lifetime value across three complete report pages.
 
-- **Interactive Report File (.pbix):** [`powerbi/olist-ecommerce-report.pbix`](powerbi/olist-ecommerce-report.pbix) *(also mirrored at [`powerbi/ecommercereport.pbix`](powerbi/ecommercereport.pbix))*
+- **Interactive Report File (.pbix):** [`powerbi/olist-ecommerce-report.pbix`](powerbi/olist-ecommerce-report.pbix)
 - **Full Report PDF Export:** [`powerbi/olist-ecommerce-report.pdf`](powerbi/olist-ecommerce-report.pdf) *(also available at [`Dashboard Pdf/Dashboard.pdf`](Dashboard%20Pdf/Dashboard.pdf))*
 - **Design System:** Custom Soft-Slate Executive Palette (`#ECF2FA` canvas, `#0F2C59` navy accents, rounded card containers, high-contrast typography)
 - **Centralized DAX Logic:** Dedicated `_Measures` table housing time intelligence, YoY variance, rankings, and customer retention metrics.
@@ -405,7 +405,6 @@ Ecommerce_Data_Modeling_SQL/
 │
 ├── 📂 powerbi/
 │   ├── 📊 olist-ecommerce-report.pbix           # Production Power BI report (3 finished pages)
-│   ├── 📊 ecommercereport.pbix                  # Mirrored report file for legacy links
 │   ├── 📑 olist-ecommerce-report.pdf            # 3-page vector PDF report export
 │   ├── 🎨 Executive_Theme.json                  # Soft-slate custom theme specification
 │   └── 📂 screenshots/
@@ -436,7 +435,7 @@ Ecommerce_Data_Modeling_SQL/
   <img src="https://img.shields.io/badge/📊%20VIEW%20DASHBOARD%20(PDF)-F2C811?style=for-the-badge&logoColor=000000" alt="View Dashboard PDF">
 </a>
 &nbsp;
-<a href="powerbi/ecommercereport.pbix">
+<a href="powerbi/olist-ecommerce-report.pbix">
   <img src="https://img.shields.io/badge/⚡%20DOWNLOAD%20.PBIX-111827?style=for-the-badge" alt="Download PBIX">
 </a>
 &nbsp;

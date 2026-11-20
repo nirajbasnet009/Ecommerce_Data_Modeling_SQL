@@ -70,6 +70,7 @@
   <a href="#-executive-scorecard--reconciliation">Scorecard</a> •
   <a href="#-monthly-revenue-trend">Monthly Trend</a> •
   <a href="#-interactive-power-bi-report">Power BI Report</a> •
+  <a href="#-product--regional-analysis">Product & Region</a> •
   <a href="#-star-schema-architecture">Star Schema</a> •
   <a href="#-bi-hardening-real-engineering-fixes">BI Hardening</a> •
   <a href="#-analytics-workflow--scripts">SQL Scripts</a> •
@@ -81,7 +82,7 @@
 
 # 📌 Project Overview
 
-> I built an interactive Power BI report on a five-table MySQL star schema to analyze delivered orders from the Olist Brazilian e-commerce dataset. The completed Executive Overview tracks merchandise revenue, delivered orders, average order value, freight, monthly revenue versus the previous year, and weekday versus weekend sales. The Product & Region and Customer Behavior pages are in progress.
+> I built an interactive Power BI report on a five-table MySQL star schema to analyze delivered orders from the Olist Brazilian e-commerce dataset. The completed Executive Overview and Product & Region report pages track merchandise revenue, delivered orders, average order value, freight, monthly revenue versus the previous year, weekday versus weekend sales, Brazilian state sales concentration, and regional product demand. The Customer Behavior page is in progress.
 
 The project connects the full lifecycle of modern analytics engineering:
 
@@ -174,15 +175,38 @@ Every headline metric in the interactive Power BI report was mathematically reco
 
 The interactive Power BI report (`ecommercereport.pbix`) is engineered using a custom executive theme, strict 1:N single-direction relationships, and centralized DAX measures:
 
-- **Report PDF Export:** [`Dashboard Pdf/Dashboard.pdf`](Dashboard%20Pdf/Dashboard.pdf) *(instant in-browser view)*
+- **Report PDF Export:** [`Dashboard Pdf/Dashboard.pdf`](Dashboard%20Pdf/Dashboard.pdf) *(instant 2-page in-browser view)*
 - **Interactive Power BI Report File (.pbix):** [`powerbi/ecommercereport.pbix`](powerbi/ecommercereport.pbix)
 - **Design System:** Custom Soft-Slate Executive Palette (`#F4F5F7` canvas, `#0F2C59` navy accents, card shadows, high-contrast typography)
 - **Centralized Logic:** Dedicated `_Measures` table housing all Time-Intelligence, KPI, and growth calculations.
 
 ### Report Pages Overview:
 1. **Executive Overview (Report Page — Completed):** Tracks merchandise revenue, delivered orders, average order value, freight, monthly revenue versus the previous year, and weekday versus weekend sales.
-2. **Product & Region (Report Page — In Progress):** Top 10 English product categories, geographic revenue concentration matrix by Brazilian State (`SP`, `RJ`, `MG`), and freight-to-merchandise impact ratios.
+2. **Product & Region (Report Page — Completed):** Merchandise revenue distribution by Brazilian state with choropleth geographic mapping, top 10 state revenue ranking, and top product categories in São Paulo.
 3. **Customer Behavior (Report Page — In Progress):** Repeat customer purchasing intervals (`LAG()`), new vs. repeat customer contribution, and average items per transaction.
+
+---
+
+# 🗺️ Product & Regional Analysis
+
+<p align="center">
+  <img src="docs/images/product-and-region.png" alt="Product & Region — Power BI Report Preview" width="100%">
+</p>
+
+<p align="center">
+  <sub><b>Product & Region — Power BI Report Preview</b></sub>
+</p>
+
+### 💡 Key Regional & Category Insights:
+- **Southeastern Revenue Concentration:** Brazil's top three southeastern states generate **63.39%** of total national e-commerce merchandise revenue:
+  - **São Paulo (SP):** `R$ 5,068,787.73` (**38.34%** market share)
+  - **Rio de Janeiro (RJ):** `R$ 1,759,940.91` (**13.31%** market share)
+  - **Minas Gerais (MG):** `R$ 1,552,774.63` (**11.74%** market share)
+- **Southern Logistics Footprint:** The Southern region follows with strong volume in **Rio Grande do Sul (RS)** at `R$ 728,785.57` (**5.51%**) and **Paraná (PR)** at `R$ 665,218.44` (**5.03%**).
+- **São Paulo Category Leaders:** In the dominant São Paulo market, consumer spend is heavily concentrated in:
+  1. **Bed, Bath & Table:** `R$ 472K`
+  2. **Health & Beauty:** `R$ 454K`
+  3. **Watches & Gifts:** `R$ 422K`
 
 ---
 
@@ -338,6 +362,7 @@ Ecommerce_Data_Modeling_SQL/
 ├── 📂 docs/
 │   └── 📂 images/
 │       ├── 📊 executive-sales-overview.png      # Executive Overview report page preview
+│       ├── 🗺️ product-and-region.png            # Product & Region report page preview
 │       └── 📈 monthly-merchandise-revenue.png    # Featured monthly revenue YoY trend visual
 │
 ├── 📂 migrations/

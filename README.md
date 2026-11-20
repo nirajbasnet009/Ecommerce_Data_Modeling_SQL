@@ -48,7 +48,7 @@
 ---
 
 <p align="center">
-  <img src="docs/images/executive-sales-overview.png" alt="Olist E-Commerce Executive Sales & Revenue Overview Dashboard" width="100%">
+  <img src="docs/images/olist-executive-overview.png" alt="Olist E-Commerce Executive Sales & Revenue Overview Dashboard" width="100%">
 </p>
 
 <div align="center">
@@ -151,13 +151,9 @@ Every headline metric in the Power BI dashboard was mathematically reconciled ag
 
 ---
 
-# 📈 Monthly Revenue Trend
+# 📈 Monthly Revenue Trend & Time Intelligence
 
-<p align="center">
-  <img src="docs/images/monthly-merchandise-revenue.png" alt="Monthly Merchandise Revenue Trend" width="100%">
-</p>
-
-*The dual-line visual compares monthly merchandise sales in Brazilian Reais (R$) against the same month in the prior year (`SAMEPERIODLASTYEAR`), illustrating seasonal velocity, compound annual growth, and platform expansion across the 2016–2018 Olist order lifecycle.*
+*The dual-line visual on Page 1 (Executive Overview) compares monthly merchandise sales in Brazilian Reais (R$) against the same month in the prior year (`SAMEPERIODLASTYEAR`), illustrating seasonal velocity, compound annual growth, and platform expansion across the 2016–2018 Olist order lifecycle.*
 
 ### 💡 Key Commercial Observations:
 - **November 2017 Black Friday Surge:** Delivered sales peaked at **R$ 1,005,622.37** in November 2017, representing a dramatic **323% YoY increase** fueled by nationwide e-commerce promotional events.
@@ -171,7 +167,7 @@ Every headline metric in the Power BI dashboard was mathematically reconciled ag
 I built an interactive Power BI report directly on the verified MySQL 8.0 star schema to analyze delivered orders from the Olist Brazilian e-commerce dataset. Using granular order-item transactions from `fact_sales` and four dimensional tables (`dim_customer`, `dim_product`, `dim_seller`, and `dim_date`), the report centralizes business logic into dedicated DAX measures to evaluate merchandise sales performance, logistics economics, geographical concentration, and customer lifetime value across three complete report pages.
 
 - **Interactive Report File (.pbix):** [`powerbi/olist-ecommerce-report.pbix`](powerbi/olist-ecommerce-report.pbix)
-- **Full Report PDF Export:** [`powerbi/olist-ecommerce-report.pdf`](powerbi/olist-ecommerce-report.pdf) *(also available at [`Dashboard Pdf/Dashboard.pdf`](Dashboard%20Pdf/Dashboard.pdf))*
+- **Full Report PDF Export:** [`powerbi/olist-ecommerce-report.pdf`](powerbi/olist-ecommerce-report.pdf) *(or [`docs/images/olist-ecommerce-report.pdf`](docs/images/olist-ecommerce-report.pdf))*
 - **Design System:** Custom Soft-Slate Executive Palette (`#ECF2FA` canvas, `#0F2C59` navy accents, rounded card containers, high-contrast typography)
 - **Centralized DAX Logic:** Dedicated `_Measures` table housing time intelligence, YoY variance, rankings, and customer retention metrics.
 
@@ -182,7 +178,7 @@ I built an interactive Power BI report directly on the verified MySQL 8.0 star s
 The **Executive Overview** report page provides senior leadership with a consolidated snapshot of commercial performance, growth momentum, and fulfillment economics across the entire marketplace.
 
 <p align="center">
-  <img src="powerbi/screenshots/olist-executive-overview.png" alt="Olist E-Commerce Analytics — Executive Overview Report Page" width="100%">
+  <img src="docs/images/olist-executive-overview.png" alt="Olist E-Commerce Analytics — Executive Overview Report Page" width="100%">
 </p>
 
 * **Core Business Questions Answered:**
@@ -198,7 +194,7 @@ The **Executive Overview** report page provides senior leadership with a consoli
 The **Product & Region** report page investigates geographic market concentration across Brazil's 27 federative units and evaluates regional category dominance.
 
 <p align="center">
-  <img src="powerbi/screenshots/olist-product-and-region.png" alt="Olist E-Commerce Analytics — Product & Region Report Page" width="100%">
+  <img src="docs/images/olist-product-and-region.png" alt="Olist E-Commerce Analytics — Product & Region Report Page" width="100%">
 </p>
 
 * **Core Business Questions Answered:**
@@ -213,7 +209,7 @@ The **Product & Region** report page investigates geographic market concentratio
 The **Customer Behavior** report page evaluates unique customer acquisition, order frequency distribution, repeat purchasing rates, and revenue concentration among recurring buyers.
 
 <p align="center">
-  <img src="powerbi/screenshots/olist-customer-behavior.png" alt="Olist E-Commerce Analytics — Customer Behavior Report Page" width="100%">
+  <img src="docs/images/olist-customer-behavior.png" alt="Olist E-Commerce Analytics — Customer Behavior Report Page" width="100%">
 </p>
 
 * **Core Business Questions Answered:**
@@ -390,13 +386,12 @@ mysql -h 127.0.0.1 -P 3307 -u root -p ecommerce_db < migrations/03_patch_dim_pro
 ```text
 Ecommerce_Data_Modeling_SQL/
 │
-├── 📂 Dashboard Pdf/
-│   └── 📊 Dashboard.pdf                         # Full-resolution executive dashboard PDF export
-│
 ├── 📂 docs/
 │   └── 📂 images/
-│       ├── 📊 executive-sales-overview.png      # Full executive dashboard canvas preview
-│       └── 📈 monthly-merchandise-revenue.png    # Featured monthly revenue YoY trend visual
+│       ├── 📊 olist-executive-overview.png      # Page 1: Executive Overview preview
+│       ├── 🗺️ olist-product-and-region.png       # Page 2: Product & Region preview
+│       ├── 👥 olist-customer-behavior.png        # Page 3: Customer Behavior preview
+│       └── 📑 olist-ecommerce-report.pdf        # 3-page vector PDF report export
 │
 ├── 📂 migrations/
 │   ├── 🧩 01_patch_dim_customer_grain.sql       # Remodels customer to unique individual grain
@@ -406,17 +401,14 @@ Ecommerce_Data_Modeling_SQL/
 ├── 📂 powerbi/
 │   ├── 📊 olist-ecommerce-report.pbix           # Production Power BI report (3 finished pages)
 │   ├── 📑 olist-ecommerce-report.pdf            # 3-page vector PDF report export
-│   ├── 🎨 Executive_Theme.json                  # Soft-slate custom theme specification
-│   └── 📂 screenshots/
-│       ├── 🖼️ olist-executive-overview.png      # Page 1: Executive Overview preview
-│       ├── 🗺️ olist-product-and-region.png       # Page 2: Product & Region preview
-│       └── 👥 olist-customer-behavior.png        # Page 3: Customer Behavior preview
+│   └── 🎨 Executive_Theme.json                  # Soft-slate custom theme specification
 │
 ├── 📄 01_data_exploration.sql                   # Database exploration and catalog profiling
 ├── 📄 02_data_quality.sql                       # Integrity tests and anomaly audits
 ├── 📄 03_business_analysis.sql                  # Business KPIs, AOV, and carrier SLA compliance
 ├── 📄 04_advanced_sql.sql                       # Window functions, rankings, and LAG analysis
 ├── 📄 05_olap_modeling.sql                      # Kimball star schema construction
+├── 📂 star_schema_data/                         # Exported Kimball dimensional model CSVs
 ├── ⚖️ LICENSE                                   # MIT License
 └── 📘 README.md                                 # Portfolio presentation & technical documentation
 ```
@@ -431,7 +423,7 @@ Ecommerce_Data_Modeling_SQL/
 
 <br>
 
-<a href="Dashboard%20Pdf/Dashboard.pdf">
+<a href="powerbi/olist-ecommerce-report.pdf">
   <img src="https://img.shields.io/badge/📊%20VIEW%20DASHBOARD%20(PDF)-F2C811?style=for-the-badge&logoColor=000000" alt="View Dashboard PDF">
 </a>
 &nbsp;

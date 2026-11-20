@@ -1,11 +1,11 @@
 <div align="center">
 
-# 🛒 Olist E-Commerce Analytics — Power BI Report
+# 🛒 Olist Brazilian E-Commerce Analytics & Dimensional Modeling
 
-### End-to-end SQL analytics, data hygiene auditing, and star schema modeling on 100k+ Brazilian customer orders in MySQL 8.0 & Docker, with an interactive Power BI report.
+### End-to-end SQL analytics, data hygiene auditing, and star schema modeling on 100k+ Brazilian customer orders in MySQL 8.0 & Docker, with an executive Power BI dashboard.
 
 <p>
-  <img src="https://img.shields.io/badge/Power%20BI-Interactive%20Report-F2C811?style=for-the-badge&logo=powerbi&logoColor=000000" alt="Power BI">
+  <img src="https://img.shields.io/badge/Power%20BI-Executive%20Dashboard-F2C811?style=for-the-badge&logo=powerbi&logoColor=000000" alt="Power BI">
   <img src="https://img.shields.io/badge/MySQL%208.0-Database%20Engine-4479A1?style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL 8.0">
   <img src="https://img.shields.io/badge/Docker-Containerized-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker">
   <img src="https://img.shields.io/badge/SQL-Analytics%20%26%20OLAP-336791?style=for-the-badge&logo=postgresql&logoColor=white" alt="SQL">
@@ -23,12 +23,12 @@
 
 <br>
 
-<a href="Dashboard%20Pdf/Dashboard.pdf">
-  <img src="https://img.shields.io/badge/📊%20VIEW%20REPORT%20(PDF)-111827?style=for-the-badge" alt="View Report PDF">
+<a href="powerbi/olist-ecommerce-report.pdf">
+  <img src="https://img.shields.io/badge/📊%20VIEW%20REPORT%20(3--PAGE%20PDF)-111827?style=for-the-badge" alt="View Report PDF">
 </a>
 &nbsp;
-<a href="powerbi/ecommercereport.pbix">
-  <img src="https://img.shields.io/badge/⚡%20DOWNLOAD%20.PBIX-111827?style=for-the-badge" alt="Download Interactive Power BI Report">
+<a href="powerbi/olist-ecommerce-report.pbix">
+  <img src="https://img.shields.io/badge/⚡%20DOWNLOAD%20.PBIX-111827?style=for-the-badge" alt="Download PBIX">
 </a>
 &nbsp;
 <a href="https://nirajbasnet.com.np/blog/olist-ecommerce-sql-analytics-and-olap-modeling/">
@@ -48,11 +48,7 @@
 ---
 
 <p align="center">
-  <img src="docs/images/executive-sales-overview.png" alt="Executive Overview — Power BI Report Preview" width="100%">
-</p>
-
-<p align="center">
-  <sub><b>Executive Overview — Power BI Report Preview</b></sub>
+  <img src="docs/images/executive-sales-overview.png" alt="Olist E-Commerce Executive Sales & Revenue Overview Dashboard" width="100%">
 </p>
 
 <div align="center">
@@ -69,8 +65,7 @@
   <a href="#-project-overview">Overview</a> •
   <a href="#-executive-scorecard--reconciliation">Scorecard</a> •
   <a href="#-monthly-revenue-trend">Monthly Trend</a> •
-  <a href="#-interactive-power-bi-report">Power BI Report</a> •
-  <a href="#-product--regional-analysis">Product & Region</a> •
+  <a href="#-power-bi-executive-dashboard">Power BI Dashboard</a> •
   <a href="#-star-schema-architecture">Star Schema</a> •
   <a href="#-bi-hardening-real-engineering-fixes">BI Hardening</a> •
   <a href="#-analytics-workflow--scripts">SQL Scripts</a> •
@@ -82,7 +77,7 @@
 
 # 📌 Project Overview
 
-> I built an interactive Power BI report on a five-table MySQL star schema to analyze delivered orders from the Olist Brazilian e-commerce dataset. The completed Executive Overview and Product & Region report pages track merchandise revenue, delivered orders, average order value, freight, monthly revenue versus the previous year, weekday versus weekend sales, Brazilian state sales concentration, and regional product demand. The Customer Behavior page is in progress.
+In this project, I modeled and analyzed **100,000+ real-world customer transactions** across nine relational tables from the Kaggle Olist Brazilian E-Commerce public dataset to extract actionable commercial insights and build an analytics-ready dimensional warehouse.
 
 The project connects the full lifecycle of modern analytics engineering:
 
@@ -90,13 +85,13 @@ The project connects the full lifecycle of modern analytics engineering:
 
 <br>
 
-**Raw Kaggle CSVs ──► Staging Tables ──► Data Hygiene Audits ──► Analytical KPIs ──► Kimball Star Schema ──► BI Hardening Migrations ──► Interactive Power BI Report**
+**Raw Kaggle CSVs ──► Staging Tables ──► Data Hygiene Audits ──► Analytical KPIs ──► Kimball Star Schema ──► BI Hardening Migrations ──► Power BI Executive Dashboard**
 
 </div>
 
 <br>
 
-Rather than analyzing tables in isolation, this project resolves messy production anomalies (order vs. customer grain, calendar discontinuity, missing translations), guarantees **100% referential integrity** with zero orphaned records, reconciles every business KPI to the exact cent between SQL and DAX, and delivers an interactive Power BI report (`ecommercereport.pbix`).
+Rather than analyzing tables in isolation, this project resolves messy production anomalies (order vs. customer grain, calendar discontinuity, missing translations), guarantees **100% referential integrity** with zero orphaned records, reconciles every business KPI to the exact cent between SQL and DAX, and delivers an interactive, executive-grade Power BI dashboard.
 
 ### 🏆 What This Project Demonstrates
 
@@ -105,7 +100,7 @@ Rather than analyzing tables in isolation, this project resolves messy productio
 <td width="50%" valign="top">
 
 ### 📊 BI & Visualization
-- Interactive report architecture
+- Executive dashboard architecture
 - Soft-slate custom theme (`#F4F5F7` & `#0F2C59`)
 - Time-intelligence trend visualization
 - Gapless timeline slicers & visual hierarchy
@@ -139,7 +134,7 @@ Rather than analyzing tables in isolation, this project resolves messy productio
 
 # 🎯 Executive Scorecard & Reconciliation
 
-Every headline metric in the interactive Power BI report was mathematically reconciled against MySQL 8.0 OLAP queries to ensure 100% reporting integrity:
+Every headline metric in the Power BI dashboard was mathematically reconciled against MySQL 8.0 OLAP queries to ensure 100% reporting integrity:
 
 | Metric | Business Definition | MySQL 8.0 Ground Truth | Power BI DAX Measure | Status |
 |---|---|---|---|:---:|
@@ -171,43 +166,82 @@ Every headline metric in the interactive Power BI report was mathematically reco
 
 ---
 
-# 📊 Interactive Power BI Report
+# 📊 Power BI Interactive Report
 
-The interactive Power BI report (`ecommercereport.pbix`) is engineered using a custom executive theme, strict 1:N single-direction relationships, and centralized DAX measures:
+I built an interactive Power BI report directly on the verified MySQL 8.0 star schema to analyze delivered orders from the Olist Brazilian e-commerce dataset. Using granular order-item transactions from `fact_sales` and four dimensional tables (`dim_customer`, `dim_product`, `dim_seller`, and `dim_date`), the report centralizes business logic into dedicated DAX measures to evaluate merchandise sales performance, logistics economics, geographical concentration, and customer lifetime value across three complete report pages.
 
-- **Report PDF Export:** [`Dashboard Pdf/Dashboard.pdf`](Dashboard%20Pdf/Dashboard.pdf) *(instant 2-page in-browser view)*
-- **Interactive Power BI Report File (.pbix):** [`powerbi/ecommercereport.pbix`](powerbi/ecommercereport.pbix)
-- **Design System:** Custom Soft-Slate Executive Palette (`#F4F5F7` canvas, `#0F2C59` navy accents, card shadows, high-contrast typography)
-- **Centralized Logic:** Dedicated `_Measures` table housing all Time-Intelligence, KPI, and growth calculations.
-
-### Report Pages Overview:
-1. **Executive Overview (Report Page — Completed):** Tracks merchandise revenue, delivered orders, average order value, freight, monthly revenue versus the previous year, and weekday versus weekend sales.
-2. **Product & Region (Report Page — Completed):** Merchandise revenue distribution by Brazilian state with choropleth geographic mapping, top 10 state revenue ranking, and top product categories in São Paulo.
-3. **Customer Behavior (Report Page — In Progress):** Repeat customer purchasing intervals (`LAG()`), new vs. repeat customer contribution, and average items per transaction.
+- **Interactive Report File (.pbix):** [`powerbi/olist-ecommerce-report.pbix`](powerbi/olist-ecommerce-report.pbix) *(also mirrored at [`powerbi/ecommercereport.pbix`](powerbi/ecommercereport.pbix))*
+- **Full Report PDF Export:** [`powerbi/olist-ecommerce-report.pdf`](powerbi/olist-ecommerce-report.pdf) *(also available at [`Dashboard Pdf/Dashboard.pdf`](Dashboard%20Pdf/Dashboard.pdf))*
+- **Design System:** Custom Soft-Slate Executive Palette (`#ECF2FA` canvas, `#0F2C59` navy accents, rounded card containers, high-contrast typography)
+- **Centralized DAX Logic:** Dedicated `_Measures` table housing time intelligence, YoY variance, rankings, and customer retention metrics.
 
 ---
 
-# 🗺️ Product & Regional Analysis
+### Page 1: Executive Overview
+
+The **Executive Overview** report page provides senior leadership with a consolidated snapshot of commercial performance, growth momentum, and fulfillment economics across the entire marketplace.
 
 <p align="center">
-  <img src="docs/images/product-and-region.png" alt="Product & Region — Power BI Report Preview" width="100%">
+  <img src="powerbi/screenshots/olist-executive-overview.png" alt="Olist E-Commerce Analytics — Executive Overview Report Page" width="100%">
 </p>
+
+* **Core Business Questions Answered:**
+  * What is our total delivered merchandise volume, freight cost, and Average Order Value (AOV)?
+  * How does monthly revenue track against the previous year (YoY time intelligence), and when did seasonal demand surge?
+  * What proportion of total gross delivered value is absorbed by logistics and freight?
+  * How do commercial sales velocities differ between weekday trading and weekend purchasing?
+
+---
+
+### Page 2: Product & Region
+
+The **Product & Region** report page investigates geographic market concentration across Brazil's 27 federative units and evaluates regional category dominance.
 
 <p align="center">
-  <sub><b>Product & Region — Power BI Report Preview</b></sub>
+  <img src="powerbi/screenshots/olist-product-and-region.png" alt="Olist E-Commerce Analytics — Product & Region Report Page" width="100%">
 </p>
 
-### 💡 Key Regional & Category Insights:
-- **Southeastern Revenue Concentration:** Brazil's top three southeastern states generate **63.39%** of total national e-commerce merchandise revenue:
-  - **São Paulo (SP):** `R$ 5,068,787.73` (**38.34%** market share)
-  - **Rio de Janeiro (RJ):** `R$ 1,759,940.91` (**13.31%** market share)
-  - **Minas Gerais (MG):** `R$ 1,552,774.63` (**11.74%** market share)
-- **Southern Logistics Footprint:** The Southern region follows with strong volume in **Rio Grande do Sul (RS)** at `R$ 728,785.57` (**5.51%**) and **Paraná (PR)** at `R$ 665,218.44` (**5.03%**).
-- **São Paulo Category Leaders:** In the dominant São Paulo market, consumer spend is heavily concentrated in:
-  1. **Bed, Bath & Table:** `R$ 472K`
-  2. **Health & Beauty:** `R$ 454K`
-  3. **Watches & Gifts:** `R$ 422K`
+* **Core Business Questions Answered:**
+  * Which Brazilian states generate the highest merchandise volume, and what is each state's share of national demand?
+  * How concentrated is marketplace revenue among top states (e.g., São Paulo, Rio de Janeiro, Minas Gerais)?
+  * Within our largest regional market (São Paulo), which product categories drive the highest commercial turnover?
 
+---
+
+### Page 3: Customer Behavior
+
+The **Customer Behavior** report page evaluates unique customer acquisition, order frequency distribution, repeat purchasing rates, and revenue concentration among recurring buyers.
+
+<p align="center">
+  <img src="powerbi/screenshots/olist-customer-behavior.png" alt="Olist E-Commerce Analytics — Customer Behavior Report Page" width="100%">
+</p>
+
+* **Core Business Questions Answered:**
+  * How many unique delivered customers purchased through Olist, and how many became repeat buyers?
+  * What percentage of the customer base makes 1, 2, or 3+ purchases (order frequency breakdown)?
+  * What share of total merchandise revenue is generated by repeat customers versus single-purchase buyers?
+  * How did Monthly Active Customers (MAC) scale month-over-month throughout the platform's multi-year growth trajectory?
+
+---
+
+### 🔍 Key Verified Findings from the Final Report
+
+1. **Topline Financial Reconciliation:** At full range, delivered orders generated **R$ 13,221,498.11 in net merchandise revenue** across **96,478 delivered orders** (**R$ 15,419,773.75 gross delivered value** including R$ 2,198,275.64 freight) with an Average Order Value (AOV) of **R$ 137.04**.
+2. **Customer Base & Retention Dynamics:** The platform serviced **93,358 unique delivered customers**. Of these, **2,801 customers** placed repeat orders (**3.00% repeat purchase rate**), contributing **5.51% of total merchandise revenue** (R$ 728.4K). 97.00% of customers (90,557) placed a single order, highlighting a strong one-off acquisition pattern typical of nascent marketplace expansion.
+3. **Regional Market Concentration:** The state of **São Paulo (SP) alone generated R$ 5,068,787.73 (38.34% of national sales)**. Combined with Rio de Janeiro (13.31%) and Minas Gerais (11.74%), the top 3 states capture **63.39% of total merchandise volume**, with Bed, Bath & Table (R$ 472K) and Health & Beauty (R$ 454K) leading regional product demand in SP.
+
+---
+
+### 💻 Reproduce Locally in Power BI Desktop
+
+1. **Ensure MySQL Database is Running:** Complete Steps 1–3 in the setup section below to start MySQL 8.0 in Docker (`127.0.0.1:3307`), initialize `ecommerce_db`, and run the 5 foundational SQL scripts along with the 3 BI hardening migrations (`migrations/01_patch_dim_customer_grain.sql`, `migrations/02_patch_dim_date_continuity.sql`, `migrations/03_patch_dim_product_english.sql`).
+2. **Open the Report:** Launch [`powerbi/olist-ecommerce-report.pbix`](powerbi/olist-ecommerce-report.pbix) in Microsoft Power BI Desktop.
+3. **Configure MySQL Connection (if needed):**
+   * Go to **Home > Transform Data > Data source settings**.
+   * Under **Data sources in current file**, select the MySQL connection.
+   * Verify Server is set to `127.0.0.1:3307` and Database is set to `ecommerce_db`.
+   * Click **Edit Permissions** to supply your local MySQL database credentials (default: username `root`).
+4. **Refresh Data:** Click **Refresh** on the Home ribbon to pull the latest dimensional star schema records into the Power BI VertiPaq engine.
 ---
 
 # 🧱 Star Schema Architecture
@@ -357,12 +391,11 @@ mysql -h 127.0.0.1 -P 3307 -u root -p ecommerce_db < migrations/03_patch_dim_pro
 Ecommerce_Data_Modeling_SQL/
 │
 ├── 📂 Dashboard Pdf/
-│   └── 📊 Dashboard.pdf                         # Full-resolution report PDF export
+│   └── 📊 Dashboard.pdf                         # Full-resolution executive dashboard PDF export
 │
 ├── 📂 docs/
 │   └── 📂 images/
-│       ├── 📊 executive-sales-overview.png      # Executive Overview report page preview
-│       ├── 🗺️ product-and-region.png            # Product & Region report page preview
+│       ├── 📊 executive-sales-overview.png      # Full executive dashboard canvas preview
 │       └── 📈 monthly-merchandise-revenue.png    # Featured monthly revenue YoY trend visual
 │
 ├── 📂 migrations/
@@ -371,8 +404,14 @@ Ecommerce_Data_Modeling_SQL/
 │   └── 🌐 03_patch_dim_product_english.sql      # Implements defensive English category mappings
 │
 ├── 📂 powerbi/
-│   ├── 📊 ecommercereport.pbix                  # Interactive Power BI report
-│   └── 🎨 Executive_Theme.json                  # Soft-slate custom theme specification
+│   ├── 📊 olist-ecommerce-report.pbix           # Production Power BI report (3 finished pages)
+│   ├── 📊 ecommercereport.pbix                  # Mirrored report file for legacy links
+│   ├── 📑 olist-ecommerce-report.pdf            # 3-page vector PDF report export
+│   ├── 🎨 Executive_Theme.json                  # Soft-slate custom theme specification
+│   └── 📂 screenshots/
+│       ├── 🖼️ olist-executive-overview.png      # Page 1: Executive Overview preview
+│       ├── 🗺️ olist-product-and-region.png       # Page 2: Product & Region preview
+│       └── 👥 olist-customer-behavior.png        # Page 3: Customer Behavior preview
 │
 ├── 📄 01_data_exploration.sql                   # Database exploration and catalog profiling
 ├── 📄 02_data_quality.sql                       # Integrity tests and anomaly audits
@@ -389,16 +428,16 @@ Ecommerce_Data_Modeling_SQL/
 
 <div align="center">
 
-### Ready to inspect the analytics and report?
+### Ready to inspect the analytics and dashboard?
 
 <br>
 
 <a href="Dashboard%20Pdf/Dashboard.pdf">
-  <img src="https://img.shields.io/badge/📊%20VIEW%20REPORT%20(PDF)-F2C811?style=for-the-badge&logoColor=000000" alt="View Report PDF">
+  <img src="https://img.shields.io/badge/📊%20VIEW%20DASHBOARD%20(PDF)-F2C811?style=for-the-badge&logoColor=000000" alt="View Dashboard PDF">
 </a>
 &nbsp;
 <a href="powerbi/ecommercereport.pbix">
-  <img src="https://img.shields.io/badge/⚡%20DOWNLOAD%20.PBIX-111827?style=for-the-badge" alt="Download Interactive Power BI Report">
+  <img src="https://img.shields.io/badge/⚡%20DOWNLOAD%20.PBIX-111827?style=for-the-badge" alt="Download PBIX">
 </a>
 &nbsp;
 <a href="https://nirajbasnet.com.np/blog/olist-ecommerce-sql-analytics-and-olap-modeling/">

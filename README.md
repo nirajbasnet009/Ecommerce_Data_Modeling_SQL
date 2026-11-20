@@ -1,11 +1,11 @@
 <div align="center">
 
-# 🛒 Olist Brazilian E-Commerce Analytics & Dimensional Modeling
+# 🛒 Olist E-Commerce Analytics — Power BI Report
 
-### End-to-end SQL analytics, data hygiene auditing, and star schema modeling on 100k+ Brazilian customer orders in MySQL 8.0 & Docker, with an executive Power BI dashboard.
+### End-to-end SQL analytics, data hygiene auditing, and star schema modeling on 100k+ Brazilian customer orders in MySQL 8.0 & Docker, with an interactive Power BI report.
 
 <p>
-  <img src="https://img.shields.io/badge/Power%20BI-Executive%20Dashboard-F2C811?style=for-the-badge&logo=powerbi&logoColor=000000" alt="Power BI">
+  <img src="https://img.shields.io/badge/Power%20BI-Interactive%20Report-F2C811?style=for-the-badge&logo=powerbi&logoColor=000000" alt="Power BI">
   <img src="https://img.shields.io/badge/MySQL%208.0-Database%20Engine-4479A1?style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL 8.0">
   <img src="https://img.shields.io/badge/Docker-Containerized-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker">
   <img src="https://img.shields.io/badge/SQL-Analytics%20%26%20OLAP-336791?style=for-the-badge&logo=postgresql&logoColor=white" alt="SQL">
@@ -24,11 +24,11 @@
 <br>
 
 <a href="Dashboard%20Pdf/Dashboard.pdf">
-  <img src="https://img.shields.io/badge/📊%20VIEW%20DASHBOARD%20(PDF)-111827?style=for-the-badge" alt="View Dashboard PDF">
+  <img src="https://img.shields.io/badge/📊%20VIEW%20REPORT%20(PDF)-111827?style=for-the-badge" alt="View Report PDF">
 </a>
 &nbsp;
 <a href="powerbi/ecommercereport.pbix">
-  <img src="https://img.shields.io/badge/⚡%20DOWNLOAD%20.PBIX-111827?style=for-the-badge" alt="Download PBIX">
+  <img src="https://img.shields.io/badge/⚡%20DOWNLOAD%20.PBIX-111827?style=for-the-badge" alt="Download Interactive Power BI Report">
 </a>
 &nbsp;
 <a href="https://nirajbasnet.com.np/blog/olist-ecommerce-sql-analytics-and-olap-modeling/">
@@ -48,7 +48,11 @@
 ---
 
 <p align="center">
-  <img src="docs/images/executive-sales-overview.png" alt="Olist E-Commerce Executive Sales & Revenue Overview Dashboard" width="100%">
+  <img src="docs/images/executive-sales-overview.png" alt="Executive Overview — Power BI Report Preview" width="100%">
+</p>
+
+<p align="center">
+  <sub><b>Executive Overview — Power BI Report Preview</b></sub>
 </p>
 
 <div align="center">
@@ -65,7 +69,7 @@
   <a href="#-project-overview">Overview</a> •
   <a href="#-executive-scorecard--reconciliation">Scorecard</a> •
   <a href="#-monthly-revenue-trend">Monthly Trend</a> •
-  <a href="#-power-bi-executive-dashboard">Power BI Dashboard</a> •
+  <a href="#-interactive-power-bi-report">Power BI Report</a> •
   <a href="#-star-schema-architecture">Star Schema</a> •
   <a href="#-bi-hardening-real-engineering-fixes">BI Hardening</a> •
   <a href="#-analytics-workflow--scripts">SQL Scripts</a> •
@@ -77,7 +81,7 @@
 
 # 📌 Project Overview
 
-In this project, I modeled and analyzed **100,000+ real-world customer transactions** across nine relational tables from the Kaggle Olist Brazilian E-Commerce public dataset to extract actionable commercial insights and build an analytics-ready dimensional warehouse.
+> I built an interactive Power BI report on a five-table MySQL star schema to analyze delivered orders from the Olist Brazilian e-commerce dataset. The completed Executive Overview tracks merchandise revenue, delivered orders, average order value, freight, monthly revenue versus the previous year, and weekday versus weekend sales. The Product & Region and Customer Behavior pages are in progress.
 
 The project connects the full lifecycle of modern analytics engineering:
 
@@ -85,13 +89,13 @@ The project connects the full lifecycle of modern analytics engineering:
 
 <br>
 
-**Raw Kaggle CSVs ──► Staging Tables ──► Data Hygiene Audits ──► Analytical KPIs ──► Kimball Star Schema ──► BI Hardening Migrations ──► Power BI Executive Dashboard**
+**Raw Kaggle CSVs ──► Staging Tables ──► Data Hygiene Audits ──► Analytical KPIs ──► Kimball Star Schema ──► BI Hardening Migrations ──► Interactive Power BI Report**
 
 </div>
 
 <br>
 
-Rather than analyzing tables in isolation, this project resolves messy production anomalies (order vs. customer grain, calendar discontinuity, missing translations), guarantees **100% referential integrity** with zero orphaned records, reconciles every business KPI to the exact cent between SQL and DAX, and delivers an interactive, executive-grade Power BI dashboard.
+Rather than analyzing tables in isolation, this project resolves messy production anomalies (order vs. customer grain, calendar discontinuity, missing translations), guarantees **100% referential integrity** with zero orphaned records, reconciles every business KPI to the exact cent between SQL and DAX, and delivers an interactive Power BI report (`ecommercereport.pbix`).
 
 ### 🏆 What This Project Demonstrates
 
@@ -100,7 +104,7 @@ Rather than analyzing tables in isolation, this project resolves messy productio
 <td width="50%" valign="top">
 
 ### 📊 BI & Visualization
-- Executive dashboard architecture
+- Interactive report architecture
 - Soft-slate custom theme (`#F4F5F7` & `#0F2C59`)
 - Time-intelligence trend visualization
 - Gapless timeline slicers & visual hierarchy
@@ -134,7 +138,7 @@ Rather than analyzing tables in isolation, this project resolves messy productio
 
 # 🎯 Executive Scorecard & Reconciliation
 
-Every headline metric in the Power BI dashboard was mathematically reconciled against MySQL 8.0 OLAP queries to ensure 100% reporting integrity:
+Every headline metric in the interactive Power BI report was mathematically reconciled against MySQL 8.0 OLAP queries to ensure 100% reporting integrity:
 
 | Metric | Business Definition | MySQL 8.0 Ground Truth | Power BI DAX Measure | Status |
 |---|---|---|---|:---:|
@@ -166,19 +170,19 @@ Every headline metric in the Power BI dashboard was mathematically reconciled ag
 
 ---
 
-# 📊 Power BI Executive Dashboard
+# 📊 Interactive Power BI Report
 
-The interactive Power BI dashboard (`ecommercereport.pbix`) is engineered using a custom executive theme, strict 1:N single-direction relationships, and centralized DAX measures:
+The interactive Power BI report (`ecommercereport.pbix`) is engineered using a custom executive theme, strict 1:N single-direction relationships, and centralized DAX measures:
 
-- **Dashboard PDF Export:** [`Dashboard Pdf/Dashboard.pdf`](Dashboard%20Pdf/Dashboard.pdf) *(instant in-browser view)*
-- **Power BI Report File (.pbix):** [`powerbi/ecommercereport.pbix`](powerbi/ecommercereport.pbix)
+- **Report PDF Export:** [`Dashboard Pdf/Dashboard.pdf`](Dashboard%20Pdf/Dashboard.pdf) *(instant in-browser view)*
+- **Interactive Power BI Report File (.pbix):** [`powerbi/ecommercereport.pbix`](powerbi/ecommercereport.pbix)
 - **Design System:** Custom Soft-Slate Executive Palette (`#F4F5F7` canvas, `#0F2C59` navy accents, card shadows, high-contrast typography)
 - **Centralized Logic:** Dedicated `_Measures` table housing all Time-Intelligence, KPI, and growth calculations.
 
 ### Report Pages Overview:
-1. **Executive Sales & Revenue Overview:** Headline scorecard, dual-line monthly YoY revenue comparison, daily sales velocity by day of week (weekday vs. weekend), and interactive gapless date slicer.
-2. **Product & Regional Deep-Dive:** Top 10 English product categories, geographic revenue concentration matrix by Brazilian State (`SP`, `RJ`, `MG`), and freight-to-merchandise impact ratios.
-3. **Customer Cohorts & Lifetime Value:** Repeat customer purchasing intervals (`LAG()`), new vs. repeat customer contribution, and average items per transaction.
+1. **Executive Overview (Report Page — Completed):** Tracks merchandise revenue, delivered orders, average order value, freight, monthly revenue versus the previous year, and weekday versus weekend sales.
+2. **Product & Region (Report Page — In Progress):** Top 10 English product categories, geographic revenue concentration matrix by Brazilian State (`SP`, `RJ`, `MG`), and freight-to-merchandise impact ratios.
+3. **Customer Behavior (Report Page — In Progress):** Repeat customer purchasing intervals (`LAG()`), new vs. repeat customer contribution, and average items per transaction.
 
 ---
 
@@ -329,11 +333,11 @@ mysql -h 127.0.0.1 -P 3307 -u root -p ecommerce_db < migrations/03_patch_dim_pro
 Ecommerce_Data_Modeling_SQL/
 │
 ├── 📂 Dashboard Pdf/
-│   └── 📊 Dashboard.pdf                         # Full-resolution executive dashboard PDF export
+│   └── 📊 Dashboard.pdf                         # Full-resolution report PDF export
 │
 ├── 📂 docs/
 │   └── 📂 images/
-│       ├── 📊 executive-sales-overview.png      # Full executive dashboard canvas preview
+│       ├── 📊 executive-sales-overview.png      # Executive Overview report page preview
 │       └── 📈 monthly-merchandise-revenue.png    # Featured monthly revenue YoY trend visual
 │
 ├── 📂 migrations/
@@ -342,7 +346,7 @@ Ecommerce_Data_Modeling_SQL/
 │   └── 🌐 03_patch_dim_product_english.sql      # Implements defensive English category mappings
 │
 ├── 📂 powerbi/
-│   ├── 📊 ecommercereport.pbix                  # Production Power BI dashboard report
+│   ├── 📊 ecommercereport.pbix                  # Interactive Power BI report
 │   └── 🎨 Executive_Theme.json                  # Soft-slate custom theme specification
 │
 ├── 📄 01_data_exploration.sql                   # Database exploration and catalog profiling
@@ -360,16 +364,16 @@ Ecommerce_Data_Modeling_SQL/
 
 <div align="center">
 
-### Ready to inspect the analytics and dashboard?
+### Ready to inspect the analytics and report?
 
 <br>
 
 <a href="Dashboard%20Pdf/Dashboard.pdf">
-  <img src="https://img.shields.io/badge/📊%20VIEW%20DASHBOARD%20(PDF)-F2C811?style=for-the-badge&logoColor=000000" alt="View Dashboard PDF">
+  <img src="https://img.shields.io/badge/📊%20VIEW%20REPORT%20(PDF)-F2C811?style=for-the-badge&logoColor=000000" alt="View Report PDF">
 </a>
 &nbsp;
 <a href="powerbi/ecommercereport.pbix">
-  <img src="https://img.shields.io/badge/⚡%20DOWNLOAD%20.PBIX-111827?style=for-the-badge" alt="Download PBIX">
+  <img src="https://img.shields.io/badge/⚡%20DOWNLOAD%20.PBIX-111827?style=for-the-badge" alt="Download Interactive Power BI Report">
 </a>
 &nbsp;
 <a href="https://nirajbasnet.com.np/blog/olist-ecommerce-sql-analytics-and-olap-modeling/">

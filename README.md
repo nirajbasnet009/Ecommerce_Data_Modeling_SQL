@@ -48,7 +48,7 @@
 ---
 
 <p align="center">
-  <img src="docs/images/olist-sales-analytics-hero.png" alt="Olist E-Commerce Sales Analytics Power BI & Star Schema Showcase" width="100%">
+  <img src="docs/images/olist-sales-analytics-hero.png?v=2" alt="Olist E-Commerce Sales Analytics Power BI & Star Schema Showcase" width="100%">
 </p>
 
 <div align="center">

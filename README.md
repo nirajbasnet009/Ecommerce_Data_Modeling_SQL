@@ -48,7 +48,7 @@
 ---
 
 <p align="center">
-  <img src="docs/images/olist-executive-overview.png" alt="Olist E-Commerce Executive Sales & Revenue Overview Dashboard" width="100%">
+  <img src="docs/images/olist-sales-analytics-hero.png" alt="Olist E-Commerce Sales Analytics Power BI & Star Schema Showcase" width="100%">
 </p>
 
 <div align="center">
@@ -388,6 +388,7 @@ Ecommerce_Data_Modeling_SQL/
 │
 ├── 📂 docs/
 │   └── 📂 images/
+│       ├── 🖼️ olist-sales-analytics-hero.png   # Hero showcase banner & laptop mockup
 │       ├── 📊 olist-executive-overview.png      # Page 1: Executive Overview preview
 │       ├── 🗺️ olist-product-and-region.png       # Page 2: Product & Region preview
 │       ├── 👥 olist-customer-behavior.png        # Page 3: Customer Behavior preview
